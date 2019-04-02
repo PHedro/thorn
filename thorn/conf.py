@@ -2,6 +2,7 @@
 from __future__ import absolute_import, unicode_literals
 
 from celery.utils import cached_property
+from django.conf import settings as dj_settings
 
 from . import validators
 from ._state import app_or_default
@@ -27,11 +28,7 @@ class Settings(object):
     default_retry = True
     default_retry_max = 10
     default_retry_delay = 60.0
-    default_recipient_validators = [
-        validators.block_internal_ips(),
-        validators.ensure_protocol('http', 'https'),
-        validators.ensure_port(80, 443),
-    ]
+    default_recipient_validators = []
     default_signal_honors_transaction = False
     default_hmac_signer = 'thorn.utils.hmac:compat_sign'
     default_allow_redirects = False

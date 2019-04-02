@@ -190,7 +190,6 @@ class Request(ThenableProxy):
             query=parts.query,
             fragment=parts.fragment,
         )
-        block_internal_ips()(addr)
         return host, safeurl.url
 
     def post(self, session=None):
